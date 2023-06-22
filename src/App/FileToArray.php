@@ -2,7 +2,7 @@
 namespace Console\App;
 
 class FileToArray {
-    public function getArray($str) {
+    public function getArray(string $str) :array {
         $arr = [];
         $result = file($str, FILE_IGNORE_NEW_LINES);
         foreach ($result as $place) {

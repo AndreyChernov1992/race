@@ -2,7 +2,7 @@
 namespace Console\App;
 
 class Ladder {
-    public function sortList($time, $racers, $sort) {
+    public function sortList(array $time, array $racers, string $sort) :string {
         $str = "<ul style = 'list-style-type: decimal;'>";
         $i = 0;
         $sort == "desc" ? arsort($time) : asort($time);
