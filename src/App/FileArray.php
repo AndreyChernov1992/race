@@ -1,7 +1,7 @@
 <?php
 namespace Console\App;
 
-class FileArray {
+class FileToArray {
     public function getArray($str) {
         $arr = [];
         $result = file($str, FILE_IGNORE_NEW_LINES);

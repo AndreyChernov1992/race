@@ -2,10 +2,9 @@
 
 namespace Console\App\Commands;
 
-use Console\App\FileArray;
+use Console\App\FileToArray;
 use Console\App\Ladder;
 use Console\App\RacerStat;
-// use Console\App\RaceTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,7 +23,7 @@ class RaceCommand extends Command {
     }
 
     protected function execute(InputInterface  $input, OutputInterface $output) {
-        $arr = new FileArray;
+        $arr = new FileToArray;
         $sortList = new Ladder;
         $stat = new RacerStat;
         $sort = $input->getOption("desc");

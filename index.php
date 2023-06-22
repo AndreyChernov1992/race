@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Unique Characters Count</title>
+<title>Race</title>
 <meta charset="utf-8" />
 </head>
 <body>
@@ -14,12 +14,12 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
-use Console\App\FileArray;
+use Console\App\FileToArray;
 use Console\App\Ladder;
 use Console\App\RaceTime;
 
 $race = new RaceTime;
-$arr = new FileArray;
+$arr = new FileToArray;
 $ladder = new Ladder;
 $file1 = $_SERVER["DOCUMENT_ROOT"] . "/bin/data/start.log";
 $file2 = $_SERVER["DOCUMENT_ROOT"] . "/bin/data/end.log";
