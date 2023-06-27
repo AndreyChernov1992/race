@@ -2,11 +2,15 @@
 namespace Console\App;
 
 class RacerStat {
-    public function getStat(array $file, array $racers, string $racer) :string {
+
+    public function getStat(array $arr, array $racers, string $racer) :string {
+        
         $result = "";
+
         foreach($racers as $key => $value) {
-            $result .= str_contains($value, $racer) ? $value . " " . $file[$key] : ""; 
+            $result .= str_contains($value, $racer) ? $value . " " . $arr[$key] : ""; 
         }
+
         return $result;
     }
 }

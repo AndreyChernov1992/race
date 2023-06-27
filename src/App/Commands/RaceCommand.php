@@ -2,8 +2,8 @@
 
 namespace Console\App\Commands;
 
-use Console\App\FileToArray;
-use Console\App\Ladder;
+use Console\App\ArrayParse;
+use Console\App\SortCommand;
 use Console\App\RacerStat;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,8 +23,8 @@ class RaceCommand extends Command {
     }
 
     protected function execute(InputInterface  $input, OutputInterface $output) {
-        $arr = new FileToArray;
-        $sortList = new Ladder;
+        $arr = new ArrayParse;
+        $sortList = new SortCommand;
         $stat = new RacerStat;
         $sort = $input->getOption("desc");
         $sortOption = $sort == "desc" ? "desc" : "asc";
@@ -33,7 +33,7 @@ class RaceCommand extends Command {
         $fileArray = $arr->getArray(ROOT . $inputFile);
         $driver = $input->getArgument("driver");
         $driver ? $output->writeln($stat->getStat($fileArray, $racers, $driver)) : "";
-        $sort ? $output->writeln($sortList->sortCommand($fileArray, $racers, $sortOption)) : "";
+        $sort ? $output->writeln($sortList->sortArray($fileArray, $racers, $sortOption)) : "";
         return 0;
     }
 }
