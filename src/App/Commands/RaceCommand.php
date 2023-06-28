@@ -29,13 +29,11 @@ class RaceCommand extends Command {
         $arr = new ArrayParse;
         $stat = new RacerStat;
         $sort = $input->getOption("desc");
-        $sortOption = $sort == "desc" ? "desc" : "asc";
-        $startTime = $arr->getArray(ROOT . "/data/start.log");
-        $endTime = $arr->getArray(ROOT . "/data/end.log");
-        $inputFile = $input->getOption("file");
-        $racers = $arr->getArray(ROOT . $inputFile);
+        $sortOption = $sort === "desc" ? "desc" : "asc";
+        $inputPath = $input->getOption("file");
+        $racers = $arr->getArray(ROOT . "/data/abbreviations.txt");
         $driver = $input->getArgument("driver");
-        $result = $finalTime->getList($startTime, $endTime, $sortOption);
+        $result = $finalTime->getList($inputPath, $sortOption);
         $driver ? 
         $output->writeln($stat->getStat($result, $racers, $driver)) : 
         $output->writeln($racersList->getList($result, $racers));

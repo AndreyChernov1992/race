@@ -21,17 +21,16 @@ use Console\App\RacersView;
 $finalTime = new GetRacersListFacade;
 $racersList = new RacersView;
 $arr = new ArrayParse;
-$startTime = $arr->getArray($_SERVER["DOCUMENT_ROOT"] . "/bin/data/start.log");
-$endTime = $arr->getArray($_SERVER["DOCUMENT_ROOT"] . "/bin/data/end.log");
+$resourcesPath = $_SERVER["DOCUMENT_ROOT"] . "/bin/data";
 $racers = $arr->getArray($_SERVER["DOCUMENT_ROOT"] . "/bin/data/abbreviations.txt");
 
 
 if(isset($_POST["Asc"])) {
-    $result = $finalTime->getList($startTime, $endTime, "asc");
+    $result = $finalTime->getList($resourcesPath, "asc");
     echo $racersList->showList($result, $racers);
 }
 else if(isset($_POST["Desc"])) {
-    $result = $finalTime->getList($startTime, $endTime, "desc");
+    $result = $finalTime->getList($resourcesPath, "desc");
     echo $racersList->showList($result, $racers);
 }
 
