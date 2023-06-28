@@ -14,18 +14,25 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+use Console\App\ArrayParse;
 use Console\App\GetRacersListFacade;
+use Console\App\RacersView;
 
-$startTime = $_SERVER["DOCUMENT_ROOT"] . "/bin/data/start.log";
-$endTime = $_SERVER["DOCUMENT_ROOT"] . "/bin/data/end.log";
-$racers = $_SERVER["DOCUMENT_ROOT"] . "/bin/data/abbreviations.txt";
-$racersList = new GetRacersListFacade;
+$finalTime = new GetRacersListFacade;
+$racersList = new RacersView;
+$arr = new ArrayParse;
+$startTime = $arr->getArray($_SERVER["DOCUMENT_ROOT"] . "/bin/data/start.log");
+$endTime = $arr->getArray($_SERVER["DOCUMENT_ROOT"] . "/bin/data/end.log");
+$racers = $arr->getArray($_SERVER["DOCUMENT_ROOT"] . "/bin/data/abbreviations.txt");
+
 
 if(isset($_POST["Asc"])) {
-    echo $result = $racersList->getList($startTime, $endTime, $racers, "asc");
+    $result = $finalTime->getList($startTime, $endTime, "asc");
+    echo $racersList->showList($result, $racers);
 }
 else if(isset($_POST["Desc"])) {
-    echo $result = $racersList->getList($startTime, $endTime, $racers, "desc");
+    $result = $finalTime->getList($startTime, $endTime, "desc");
+    echo $racersList->showList($result, $racers);
 }
 
 ?>

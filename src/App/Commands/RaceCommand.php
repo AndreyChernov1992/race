@@ -3,7 +3,8 @@
 namespace Console\App\Commands;
 
 use Console\App\ArrayParse;
-use Console\App\SortCommand;
+use Console\App\GetRacersListFacade;
+use Console\App\RacersCommandView;
 use Console\App\RacerStat;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,17 +24,21 @@ class RaceCommand extends Command {
     }
 
     protected function execute(InputInterface  $input, OutputInterface $output) {
+        $finalTime = new GetRacersListFacade;
+        $racersList = new RacersCommandView;
         $arr = new ArrayParse;
-        $sortList = new SortCommand;
         $stat = new RacerStat;
         $sort = $input->getOption("desc");
         $sortOption = $sort == "desc" ? "desc" : "asc";
-        $racers = $arr->getArray(ROOT . "/data/abbreviations.txt");
+        $startTime = $arr->getArray(ROOT . "/data/start.log");
+        $endTime = $arr->getArray(ROOT . "/data/end.log");
         $inputFile = $input->getOption("file");
-        $fileArray = $arr->getArray(ROOT . $inputFile);
+        $racers = $arr->getArray(ROOT . $inputFile);
         $driver = $input->getArgument("driver");
-        $driver ? $output->writeln($stat->getStat($fileArray, $racers, $driver)) : "";
-        $sort ? $output->writeln($sortList->sortArray($fileArray, $racers, $sortOption)) : "";
+        $result = $finalTime->getList($startTime, $endTime, $sortOption);
+        $driver ? 
+        $output->writeln($stat->getStat($result, $racers, $driver)) : 
+        $output->writeln($racersList->getList($result, $racers));
         return 0;
     }
 }

@@ -3,20 +3,11 @@ namespace Console\App;
 
 class SortList {
 
-    public function sortArray(array $time, array $racers, string $sort) :string {
+    public function sortArray(array $arr, string $sort) :array {
 
-        $str = "<ul style = 'list-style-type: decimal;'>";
-        $i = 1;
-        $sort == "desc" ? arsort($time) : asort($time);
+        $sort == "desc" ? arsort($arr) : asort($arr);
 
-        foreach($time as $key => $value) {
-            $str .="<li><span>" . $racers[$key] . " " . $value . "</span></li>";
-            $i == 15 ? $str .= "<hr></hr>" : $str .= "<pre></pre>";
-            $i++;
-        }
+        return $arr;
 
-        $str .= "</ul>";
-
-        return $str;
     }
 }
