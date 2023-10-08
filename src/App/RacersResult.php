@@ -1,12 +1,15 @@
 <?php
 namespace Console\App;
 
-class RacersResult {
+class RacersResult 
+{
     public $date;
 
-    public function resultTime(array $startList, array $endList) :array {
+    public function resultTime(array $startList, array $endList) :array 
+    {
 
-        foreach ($startList as $index => $value) {
+        foreach ($startList as $index => $value) 
+        {
             $dateStart = strtotime($startList[$index]);
             $dateEnd = strtotime($endList[$index]);
             $diff = $dateEnd - $dateStart;

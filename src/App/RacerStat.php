@@ -1,13 +1,15 @@
 <?php
 namespace Console\App;
 
-class RacerStat {
+class RacerStat 
+{
 
-    public function getStat(array $arr, array $racers, string $racer) :string {
-        
+    public function getStat(array $arr, array $racers, string $racer) :string 
+    {
         $result = "";
 
-        foreach($racers as $key => $value) {
+        foreach($racers as $key => $value) 
+        {
             $result .= str_contains($value, $racer) ? $value . " " . $arr[$key] : ""; 
         }
 

@@ -12,9 +12,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RaceCommand extends Command {
+class RaceCommand extends Command 
+{
 
-    protected function configure() {
+    protected function configure() 
+    {
         $this->setName("race")
             ->setDescription("Race!")
             ->setHelp("Custom command test")
@@ -23,7 +25,8 @@ class RaceCommand extends Command {
             ->addOption("desc", null, InputOption::VALUE_OPTIONAL);
     }
 
-    protected function execute(InputInterface  $input, OutputInterface $output) {
+    protected function execute(InputInterface  $input, OutputInterface $output) 
+    {
         $finalTime = new GetRacersListFacade;
         $racersList = new RacersCommandView;
         $arr = new ArrayParse;
@@ -37,6 +40,7 @@ class RaceCommand extends Command {
         $driver ? 
         $output->writeln($stat->getStat($result, $racers, $driver)) : 
         $output->writeln($racersList->getList($result, $racers));
+        
         return 0;
     }
 }

@@ -25,12 +25,16 @@ $resourcesPath = $_SERVER["DOCUMENT_ROOT"] . "/bin/data";
 $racers = $arr->getArray($_SERVER["DOCUMENT_ROOT"] . "/bin/data/abbreviations.txt");
 
 
-if(isset($_POST["Asc"])) {
+if(isset($_POST["Asc"])) 
+{
     $result = $finalTime->getList($resourcesPath, "asc");
+    
     echo $racersList->showList($result, $racers);
 }
-else if(isset($_POST["Desc"])) {
+else if(isset($_POST["Desc"])) 
+{
     $result = $finalTime->getList($resourcesPath, "desc");
+
     echo $racersList->showList($result, $racers);
 }
 
